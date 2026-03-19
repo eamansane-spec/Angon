@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANGON | Gaming Profile</title>
+<meta name="robots" content="noindex">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto',sans-serif;background:linear-gradient(160deg,#00c8c8 0%,#009898 30%,#006060 65%,#002828 100%);background-attachment:fixed;min-height:100vh;color:#e5e7eb;padding:40px 20px;}
+.container{max-width:860px;margin:0 auto;}
+.card{background:rgba(17,24,39,0.5);backdrop-filter:blur(24px);border-radius:16px;overflow:hidden;}
+.profile-section{padding:50px 32px 40px;text-align:center;}
+.avatar{width:110px;height:110px;border-radius:50%;background:#374151;margin:0 auto 16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.4);}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.profile-name-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;}
+.star-icon{color:#9ca3af;font-size:20px;cursor:pointer;}
+.profile-name{font-size:26px;font-weight:800;color:#fff;letter-spacing:0.5px;text-transform:uppercase;}
+.profile-meta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:16px;font-size:13px;}
+.status-badge{background:#f3f4f6;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:600;color:#111827;}
+.meta-divider{width:2px;height:16px;background:rgba(255,255,255,0.1);border-radius:2px;}
+.location{display:flex;align-items:center;gap:6px;}
+.location img{width:18px;height:13px;border-radius:2px;}
+.profile-socials{display:flex;gap:8px;justify-content:center;}
+.social-btn{width:38px;height:38px;border-radius:50%;background:rgba(17,24,39,0.3);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#e5e7eb;transition:all 0.2s;text-decoration:none;}
+.social-btn:hover{background:rgba(88,101,242,0.85);color:#fff;}
+.social-btn.instagram:hover{background:rgba(225,48,108,0.85);}
+.social-btn svg{width:22px;height:22px;}
+.tab-nav{display:flex;gap:2px;padding:0 16px 16px;overflow-x:auto;}
+.tab-nav::-webkit-scrollbar{display:none;}
+.tab-nav a{display:inline-flex;align-items:center;height:32px;padding:0 12px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#e5e7eb;border-radius:8px;transition:background 0.2s, color 0.2s, transform 0.15s;white-space:nowrap;text-decoration:none;}
+.tab-nav a:hover{background:rgba(255,255,255,0.1);transform:translateY(-1px);}
+.tab-nav a.active{background:rgba(255,255,255,0.15);color:#fff;font-weight:700;}
+.tab-nav a:active{transform:scale(0.95);}
+.sections{display:flex;flex-direction:column;gap:16px;padding:0 24px 32px;}
+.section-card{background:rgba(17,24,39,0.6);border-radius:12px;padding:20px;}
+.section-title{font-size:16px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+</style>
+</head>
+<style>
+.gear-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.gear-card{background:#1f2937;border-radius:12px;padding:12px;cursor:pointer;transition:background 0.2s;}
+.gear-card:hover{background:#374151;}
+.gear-img{width:100%;aspect-ratio:1;background:#fff;border-radius:10px;margin-bottom:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.gear-img img{width:90%;height:90%;object-fit:contain;}
+.gear-cat{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#00c8c8;margin-bottom:4px;}
+.gear-name{font-size:13px;font-weight:700;color:#fff;line-height:1.4;}
+.view-all-wrap{text-align:center;margin-top:18px;}
+.view-all-btn{background:none;border:none;color:#00c8c8;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity 0.2s;}
+.view-all-btn:hover{opacity:0.7;}
+.ranks-row{display:flex;gap:12px;flex-wrap:wrap;}
+.rank-col{position:relative;}
+.rank-col label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#ff4655;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;}
+.rank-box{background:transparent;border:none;border-radius:10px;padding:16px 24px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:110px;}
+.rank-box img{width:80px;height:80px;object-fit:contain;}
+.rank-box span{font-size:13px;font-weight:700;color:#fff;text-align:center;}
+.rr-wrap{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:2px;}
+.rr-input{width:44px;background:transparent;border:none;color:#fff;font-size:13px;font-weight:700;text-align:center;padding:2px 4px;font-family:inherit;outline:none;}
+.rr-input::-webkit-inner-spin-button,.rr-input::-webkit-outer-spin-button{-webkit-appearance:none;}
+.rr-label{font-size:12px;font-weight:700;color:#9ca3af;}
+.tier-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.tier-valo-icon{width:36px;height:36px;border:2px solid #00c8c8;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.tier-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.tier-label{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;}
+.tier-label.s{background:rgba(255,70,85,0.15);color:#ff4655;border-left:3px solid #ff4655;}
+.tier-label.a{background:rgba(255,165,0,0.15);color:#ffa500;border-left:3px solid #ffa500;}
+.tier-label.b{background:rgba(0,200,200,0.15);color:#00c8c8;border-left:3px solid #00c8c8;}
+.tier-agents{display:flex;gap:8px;flex-wrap:wrap;}
+.agent-card{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.agent-card img{width:72px;height:72px;border-radius:8px;object-fit:cover;border:2px solid transparent;}
+.tier-row.s-row .agent-card img{border-color:#ff4655;}
+.tier-row.a-row .agent-card img{border-color:#ffa500;}
+.tier-row.b-row .agent-card img{border-color:#00c8c8;}
+.agent-card span{font-size:11px;color:#9ca3af;font-weight:600;}
+.rank-picker{position:absolute;left:0;top:110%;z-index:100;background:#111827;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:240px;box-shadow:0 8px 32px rgba(0,0,0,0.5);max-height:320px;overflow-y:auto;}
+.rank-picker-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px;border-radius:8px;cursor:pointer;transition:background 0.15s;}
+.rank-picker-item:hover{background:rgba(255,255,255,0.1);}
+.rank-picker-item img{width:36px;height:36px;object-fit:contain;}
+.rank-picker-item span{font-size:9px;color:#9ca3af;font-weight:600;text-align:center;}
+/* ROLES */
+.roles-row{display:flex;gap:8px;flex-wrap:wrap;}
+.role-btn{display:flex;align-items:center;gap:7px;background:#1f2937;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 14px;font-size:11px;font-weight:800;color:#e5e7eb;letter-spacing:1.2px;text-transform:uppercase;}
+/* SETTINGS */
+.settings-tabs{display:flex;background:#1f2937;border-radius:10px;padding:4px;margin-bottom:16px;}
+.stab{flex:1;background:none;border:none;color:#9ca3af;font-size:13px;font-weight:600;padding:8px;border-radius:7px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.stab.active{background:#fff;color:#111827;}
+.settings-group-label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1.2px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:12px;}
+.settings-stats{display:flex;gap:24px;flex-wrap:wrap;background:#111827;border-radius:10px;padding:16px 20px;margin-top:4px;}
+.stat-item{display:flex;flex-direction:column;gap:4px;}
+.stat-label{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;}
+.stat-val{font-size:18px;font-weight:800;color:#fff;}
+.editable-val{cursor:default;border-bottom:none;}
+.editable-val:hover{border-bottom:none;}
+/* LINKS */
+.links-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.link-item{display:flex;align-items:center;gap:12px;background:#1f2937;border-radius:10px;padding:12px 14px;text-decoration:none;color:#e5e7eb;transition:background 0.15s;}
+.link-item:hover{background:#374151;}
+.link-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.link-name{flex:1;font-size:14px;font-weight:700;color:#fff;}
+.link-arrow{width:16px;height:16px;color:#6b7280;}
+/* VIEW ALL */
+#viewall-page{display:none;}
+#main-page{display:block;}
+.va-header{display:flex;align-items:center;gap:12px;padding:20px 24px 16px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.va-back{background:none;border:none;color:#e5e7eb;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;font-family:inherit;padding:6px 10px;border-radius:8px;transition:background 0.15s;}
+.va-back:hover{background:rgba(255,255,255,0.1);}
+.va-back svg{width:18px;height:18px;}
+.va-body{padding:20px 24px 32px;display:flex;flex-direction:column;gap:24px;}
+.va-section-label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.va-section-label svg{width:18px;height:18px;color:#00c8c8;}
+.va-section-label span{border-bottom:2px solid rgba(255,255,255,0.1);flex:1;}
+.va-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+</style>
+<body>
+<div class="container">
+  <div class="card">
+    <div id="main-page">
+      <div class="profile-section">
+        <div class="avatar">
+          <img src="https://api.konect.gg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBejlxVEE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e9cfefa479aab0992e61e3cfaec626811cc4d40e/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lKZDJWaWNBWTZCa1ZVT2hOeVpYTnBlbVZmZEc5ZlptbHNiRnNIYVFIK2FRSCsiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--9fe3585e448237b78e23eefec95f85befe7ad14a/Nalu%20matching%20icons.jpg" alt="Avatar">
+        </div>
+        <div class="profile-name-row">
+          <span class="star-icon">★</span>
+          <h1 class="profile-name">ANGON</h1>
+        </div>
+        <div class="profile-meta">
+          <div class="status-badge">LOOKING FOR TEAM</div>
+          <span class="meta-divider"></span>
+          <div class="location">
+            <img src="https://cdn.jsdelivr.net/gh/madebybowtie/FlagKit@2.2/Assets/SVG/BD.svg" alt="BD">
+            Bangladesh
+          </div>
+        </div>
+        <div id="visitor-counter" style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;font-size:12px;font-weight:600;color:#9ca3af;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span id="visit-count">...</span>
+        </div>
+        <div class="profile-socials">
+          <a href="https://www.instagram.com/eaman.sane/" target="_blank" class="social-btn instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+          <a href="https://discord.com/users/819115126224846889" target="_blank" class="social-btn" title="Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </a>
+          <button onclick="copyEmail()" class="social-btn" title="Copy Email">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
+              <path d="M0 5.457v13.909c0 .904.732 1.636 1.636 1.636h3.819V11.73L12 16.64V9.548L5.455 4.64 3.927 3.493C2.309 2.28 0 3.434 0 5.457z" fill="#34A853"/>
+              <path d="M18.545 11.73v9.273h3.819A1.636 1.636 0 0 0 24 19.366V5.457c0-2.023-2.309-3.178-3.927-1.964L18.545 4.64v7.09z" fill="#4285F4"/>
+              <path d="M12 9.548v7.09l6.545-4.908V4.64L12 9.548z" fill="#FBBC05"/>
+            </svg>
+          </button>
+          <a href="https://www.facebook.com/eaman.sane.12" target="_blank" class="social-btn" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav class="tab-nav">
+        <a href="#setup" class="active">SETUP</a>
+        <a href="#ranks">RANKS</a>
+        <a href="#tierlist">TIER LIST</a>
+        <a href="#roles">ROLES</a>
+        <a href="#settings">SETTINGS</a>
+        <a href="#links">LINKS</a>
+      </nav>
+      <div class="sections">
+        <!-- SETUP -->
+        <div class="section-card" id="setup">
+          <h2 class="section-title">Setup</h2>
+          <div class="gear-grid">
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/Xk56Bcr3/2224.png" alt="Monitor"></div><div class="gear-cat">MONITOR</div><div class="gear-name">Gigabyte G25F2A</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/0RgMQY08/Untitled-design-3-1.png" alt="Mouse"></div><div class="gear-cat">MOUSE</div><div class="gear-name">Eweadn S9</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/67B6rtmK/image.png" alt="Keyboard"></div><div class="gear-cat">KEYBOARD</div><div class="gear-name">Ajazz AK820</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/21FQZRxL/vh160-500x500.png" alt="Headphone"></div><div class="gear-cat">HEADPHONE</div><div class="gear-name">Rapoo VH160</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/My2qRMgh/amd-ryzen-7-5700x-01-500x500.png" alt="CPU"></div><div class="gear-cat">CPU</div><div class="gear-name">Ryzen 7 5700X</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/dsBTz3bv/rtx-3060-ventus-2x-oc-12gb-500x500.png" alt="GPU"></div><div class="gear-cat">GPU</div><div class="gear-name">RTX 3060 12GB OC</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/N680yXj7/coregrip-black-extended-mouse-pad-with-red-hexagon-design-900-400.png" alt="Mousepad"></div><div class="gear-cat">MOUSEPAD</div><div class="gear-name">PCB BD CoreGrip Control</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/YB54wB3D/Z.png" alt="Microphone"></div><div class="gear-cat">MICROPHONE</div><div class="gear-name">Maono DM30</div></div>
+          </div>
+          <div class="view-all-wrap"><button class="view-all-btn" onclick="showViewAll()">View all</button></div>
+        </div>
+
+        <!-- RANKS -->
+        <div class="section-card" id="ranks">
+          <h2 class="section-title">Ranks</h2>
+          <div class="ranks-row">
+            <div class="rank-col">
+              <label><img src="https://i.ibb.co/gbC20ckj/i1mage.png" style="width:16px;height:16px;object-fit:contain;"> Current Rank</label>
+              <div class="rank-box" style="position:relative;">
+                <img id="current-rank-img" src="https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/18/largeicon.png" alt="rank">
+                <span id="current-rank-name">Diamond 1</span>
+                <div class="rr-wrap">
+                  <span class="rr-input" id="current-rr" style="display:inline-block;min-width:44px;text-align:center;font-size:13px;font-weight:700;color:#fff;">0</span>
+                  <span class="rr-label">RR</span>
+                </div>
+              </div>
+              <div id="picker-current" style="display:none;"></div>
+            </div>
+            <div class="rank-col">
+              <label><img src="https://i.ibb.co/gbC20ckj/i1mage.png" style="width:16px;height:16px;object-fit:contain;"> Peak Rank</label>
+              <div class="rank-box" style="position:relative;">
+                <img id="peak-rank-img" src="https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/19/largeicon.png" alt="rank">
+                <span id="peak-rank-name">Diamond 2</span>
+                <div class="rr-wrap">
+                  <span class="rr-input" id="peak-rr" style="display:inline-block;min-width:44px;text-align:center;font-size:13px;font-weight:700;color:#fff;">89</span>
+                  <span class="rr-label">RR</span>
+                </div>
+              </div>
+              <div id="picker-peak" style="display:none;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TIER LIST -->
+        <div class="section-card" id="tierlist">
+          <div class="tier-header">
+            <h2 class="section-title" style="margin-bottom:0">Tier List</h2>
+            <div class="tier-valo-icon"><img src="https://i.ibb.co/gbC20ckj/i1mage.png" style="width:20px;height:20px;object-fit:contain;"></div>
+          </div>
+          <div class="tier-row s-row" style="margin-top:14px;">
+            <div class="tier-label s">S</div>
+            <div class="tier-agents">
+              <div class="agent-card"><img src="https://media.valorant-api.com/agents/8e253930-4c05-31dd-1b6c-968525494517/displayicon.png" alt="Omen"><span>Omen</span></div>
+              <div class="agent-card"><img src="https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/displayicon.png" alt="KAY/O"><span>KAY/O</span></div>
+            </div>
+          </div>
+          <div class="tier-row a-row">
+            <div class="tier-label a">A</div>
+            <div class="tier-agents">
+              <div class="agent-card"><img src="https://media.valorant-api.com/agents/a3bfb853-43b2-7238-a4f1-ad90e9e46bcc/displayicon.png" alt="Reyna"><span>Reyna</span></div>
+              <div class="agent-card"><img src="https://media.valorant-api.com/agents/22697a3d-45bf-8dd7-4fec-84a9e28c69d7/displayicon.png" alt="Chamber"><span>Chamber</span></div>
+            </div>
+          </div>
+          <div class="tier-row b-row">
+            <div class="tier-label b">B</div>
+            <div class="tier-agents">
+              <div class="agent-card"><img src="https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/displayicon.png" alt="Jett"><span>Jett</span></div>
+              <div class="agent-card"><img src="https://media.valorant-api.com/agents/1dbf2edd-4729-0984-3115-daa5eed44993/displayicon.png" alt="Clove"><span>Clove</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROLES -->
+        <div class="section-card" id="roles">
+          <h2 class="section-title">Roles</h2>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;">
+            <img src="https://i.ibb.co/gbC20ckj/i1mage.png" style="width:14px;height:14px;object-fit:contain;">
+            <span style="font-size:11px;font-weight:700;color:#ff4655;letter-spacing:1px;text-transform:uppercase;">Valorant</span>
+          </div>
+          <div class="roles-row">
+            <div class="role-btn"><img src="https://media.valorant-api.com/agents/roles/4ee40330-ecdd-4f2f-98a8-eb1243428373/displayicon.png" style="width:16px;height:16px;object-fit:contain;">CONTROLLER</div>
+            <div class="role-btn"><img src="https://media.valorant-api.com/agents/roles/dbe8757e-9e92-4ed4-b39f-9dfc589691d4/displayicon.png" style="width:16px;height:16px;object-fit:contain;">DUELIST</div>
+            <div class="role-btn"><img src="https://media.valorant-api.com/agents/roles/1b47567f-8f7b-444b-aae3-b0c634622d10/displayicon.png" style="width:16px;height:16px;object-fit:contain;">INITIATOR</div>
+            <div class="role-btn"><img src="https://media.valorant-api.com/agents/roles/5fc02f99-4091-4486-a895-21f6b1e2e3d8/displayicon.png" style="width:16px;height:16px;object-fit:contain;">SENTINEL</div>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="section-card" id="settings">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <h2 class="section-title" style="margin-bottom:0;">Settings</h2>
+            <div class="tier-valo-icon"><img src="https://i.ibb.co/gbC20ckj/i1mage.png" style="width:20px;height:20px;object-fit:contain;"></div>
+          </div>
+          <div class="settings-tabs">
+            <button class="stab active" onclick="switchSettingsTab(this,'config')">Config</button>
+            <button class="stab" onclick="switchSettingsTab(this,'graphics')">Graphics</button>
+          </div>
+          <div id="stab-config">
+            <div class="settings-group-label">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              MOUSE
+            </div>
+            <div class="settings-stats">
+              <div class="stat-item"><div class="stat-label">DPI</div><div class="stat-val editable-val" data-key="cfg-dpi">1200</div></div>
+              <div class="stat-item"><div class="stat-label">SENSITIVITY</div><div class="stat-val editable-val" data-key="cfg-sens">0.337</div></div>
+              <div class="stat-item"><div class="stat-label">SCOPED SENSITIVITY</div><div class="stat-val editable-val" data-key="cfg-scoped">1</div></div>
+              <div class="stat-item"><div class="stat-label">HZ</div><div class="stat-val editable-val" data-key="cfg-hz">1000</div></div>
+            </div>
+          </div>
+          <div id="stab-graphics" style="display:none;">
+            <div class="settings-group-label">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              DISPLAY
+            </div>
+            <div class="settings-stats">
+              <div class="stat-item"><div class="stat-label">RESOLUTION</div><div class="stat-val editable-val" data-key="gfx-res">1920x1080</div></div>
+              <div class="stat-item"><div class="stat-label">DISPLAY MODE</div><div class="stat-val editable-val" data-key="gfx-mode">Fullscreen</div></div>
+              <div class="stat-item"><div class="stat-label">ASPECT RATIO</div><div class="stat-val editable-val" data-key="gfx-ar">16:9</div></div>
+              <div class="stat-item"><div class="stat-label">ASPECT RATIO METHOD</div><div class="stat-val editable-val" data-key="gfx-arm">Fill</div></div>
+            </div>
+            <div class="settings-stats" style="margin-top:12px;">
+              <div class="stat-item"><div class="stat-label">ENEMY HIGHLIGHT COLOR</div><div class="stat-val editable-val" data-key="gfx-ehc">Yellow (Deuteranopia)</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LINKS -->
+        <div class="section-card" id="links">
+          <h2 class="section-title">Links</h2>
+          <div class="links-list">
+            <a href="https://discord.com/users/819115126224846889" target="_blank" class="link-item">
+              <div class="link-icon" style="background:#5865F2;"><svg viewBox="0 0 71 55" fill="white" width="22" height="22"><g clip-path="url(#a)"><path d="M60.105 4.898A58.55 58.55 0 0 0 45.653.415a.22.22 0 0 0-.233.11 40.784 40.784 0 0 0-1.8 3.697c-5.456-.817-10.886-.817-16.23 0-.485-1.164-1.201-2.587-1.828-3.697a.228.228 0 0 0-.233-.11 58.386 58.386 0 0 0-14.452 4.483.207.207 0 0 0-.095.082C1.578 18.73-.944 32.144.293 45.39a.244.244 0 0 0 .093.167c6.073 4.46 11.955 7.167 17.729 8.962a.23.23 0 0 0 .249-.082 42.08 42.08 0 0 0 3.627-5.9.225.225 0 0 0-.123-.312 38.772 38.772 0 0 1-5.539-2.64.228.228 0 0 1-.022-.378c.372-.279.744-.569 1.1-.862a.22.22 0 0 1 .23-.03c11.619 5.304 24.198 5.304 35.68 0a.219.219 0 0 1 .233.027c.356.293.728.586 1.103.865a.228.228 0 0 1-.02.378 36.384 36.384 0 0 1-5.54 2.637.227.227 0 0 0-.121.315 47.249 47.249 0 0 0 3.624 5.897.225.225 0 0 0 .249.084c5.801-1.794 11.684-4.502 17.757-8.961a.228.228 0 0 0 .092-.164c1.48-15.315-2.48-28.618-10.497-40.412a.18.18 0 0 0-.093-.084Zm-36.38 32.427c-3.497 0-6.38-3.211-6.38-7.156 0-3.944 2.827-7.156 6.38-7.156 3.583 0 6.438 3.24 6.38 7.156 0 3.945-2.827 7.156-6.38 7.156Zm23.593 0c-3.498 0-6.38-3.211-6.38-7.156 0-3.944 2.826-7.156 6.38-7.156 3.582 0 6.437 3.24 6.38 7.156 0 3.945-2.798 7.156-6.38 7.156Z"/></g><defs><clipPath id="a"><path fill="white" d="M0 0h71v55H0z"/></clipPath></defs></svg></div>
+              <span class="link-name">Discord</span>
+              <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="https://tracker.gg/valorant" target="_blank" class="link-item">
+              <div class="link-icon" style="background:#e53935;"><span style="font-size:11px;font-weight:900;color:#fff;letter-spacing:-0.5px;">TRN</span></div>
+              <span class="link-name">Tracker</span>
+              <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end main-page -->
+
+    <!-- VIEW ALL PAGE -->
+    <div id="viewall-page">
+      <div class="va-header">
+        <button class="va-back" onclick="showMain()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          SETUP
+        </button>
+      </div>
+      <div class="va-body">
+        <div>
+          <div class="va-section-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>GEAR<span></span></div>
+          <div class="va-grid">
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/Xk56Bcr3/2224.png" alt="Monitor"></div><div class="gear-cat">MONITOR</div><div class="gear-name">Gigabyte G25F2A</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/0RgMQY08/Untitled-design-3-1.png" alt="Mouse"></div><div class="gear-cat">MOUSE</div><div class="gear-name">Eweadn S9</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/67B6rtmK/image.png" alt="Keyboard"></div><div class="gear-cat">KEYBOARD</div><div class="gear-name">Ajazz AK820</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/21FQZRxL/vh160-500x500.png" alt="Headphone"></div><div class="gear-cat">HEADPHONE</div><div class="gear-name">Rapoo VH160</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/YB54wB3D/Z.png" alt="Microphone"></div><div class="gear-cat">MICROPHONE</div><div class="gear-name">Maono DM30</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/N680yXj7/coregrip-black-extended-mouse-pad-with-red-hexagon-design-900-400.png" alt="Mousepad"></div><div class="gear-cat">MOUSEPAD</div><div class="gear-name">PCB BD CoreGrip Control</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="va-section-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>PC SPECS<span></span></div>
+          <div class="va-grid">
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/My2qRMgh/amd-ryzen-7-5700x-01-500x500.png" alt="CPU"></div><div class="gear-cat">CPU</div><div class="gear-name">Ryzen 7 5700X</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/7hs3JVd/b550m-a-pro-1-500x500.png" alt="Motherboard"></div><div class="gear-cat">MOTHERBOARD</div><div class="gear-name">MSI B550 M A PRO</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/dsBTz3bv/rtx-3060-ventus-2x-oc-12gb-500x500.png" alt="GPU"></div><div class="gear-cat">GRAPHICS CARD</div><div class="gear-name">RTX 3060 12GB OC</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/6RVGNLkD/VENG-LPX-BLK-01-500x500.png" alt="RAM"></div><div class="gear-cat">RAM</div><div class="gear-name">16GB DDR4</div></div>
+            <div class="gear-card"><div class="gear-img"><img src="https://i.ibb.co/6RNZq7XK/e240tc-01-500x500.png" alt="Cooler"></div><div class="gear-cat">COOLER</div><div class="gear-name">upHere E240TC 240mm</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- AGENT PICKER OVERLAY -->
+<div id="agent-picker-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:999;align-items:center;justify-content:center;">
+  <div style="background:#111827;border-radius:16px;padding:16px;width:320px;max-height:80vh;overflow-y:auto;position:relative;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <span style="font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;">Select Agent</span>
+      <button onclick="closeAgentPicker()" style="background:none;border:none;color:#9ca3af;font-size:20px;cursor:pointer;line-height:1;">✕</button>
+    </div>
+    <div id="agent-picker-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;"></div>
+  </div>
+</div>
+
+<script>
+const IS_ADMIN = location.search.includes('admin');
+
+// Visitor counter
+(function(){
+  // Count this visit (unique per session)
+  let total = parseInt(localStorage.getItem('visit-total') || '0');
+  const lastVisit = localStorage.getItem('visit-last');
+  const now = Date.now();
+  // Count as new visit if more than 30 min since last
+  if (!lastVisit || (now - parseInt(lastVisit)) > 1800000) {
+    total++;
+    localStorage.setItem('visit-total', total);
+    localStorage.setItem('visit-last', now);
+  }
+  const el = document.getElementById('visit-count');
+  if (el) {
+    if (IS_ADMIN) {
+      el.textContent = total + ' views';
+      document.getElementById('visitor-counter').style.display = 'flex';
+    } else {
+      document.getElementById('visitor-counter').style.display = 'flex';
+      el.textContent = total + ' views';
+    }
+  }
+})();
+
+// Apply admin styles if needed
+if (IS_ADMIN) {
+  const s = document.createElement('style');
+  s.textContent = `.editable-val{cursor:pointer;border-bottom:1px dashed rgba(255,255,255,0.2);transition:border-color 0.2s;}.editable-val:hover{border-bottom-color:#00c8c8;}.editable-val.editing{border-bottom:1px solid #00c8c8;outline:none;}`;
+  document.head.appendChild(s);
+}
+
+function copyEmail(){navigator.clipboard.writeText('eamansane@gmail.com').then(()=>alert('Email copied!')).catch(()=>alert('Email: eamansane@gmail.com'));}
+function showViewAll(){document.getElementById('main-page').style.display='none';document.getElementById('viewall-page').style.display='block';window.scrollTo(0,0);}
+function showMain(){document.getElementById('viewall-page').style.display='none';document.getElementById('main-page').style.display='block';window.scrollTo(0,0);}
+function switchSettingsTab(btn,tab){document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));document.getElementById('stab-config').style.display='none';document.getElementById('stab-graphics').style.display='none';btn.classList.add('active');document.getElementById('stab-'+tab).style.display='block';}
+
+function editStat(el) {
+  if (!IS_ADMIN) return;
+  if (el.querySelector('input')) return;
+  const key = el.dataset.key;
+  const cur = el.textContent.trim();
+  const input = document.createElement('input');
+  input.value = cur;
+  input.style.cssText = 'background:transparent;border:none;color:#fff;font-size:18px;font-weight:800;font-family:inherit;outline:none;width:100%;max-width:120px;';
+  el.textContent = '';
+  el.appendChild(input);
+  el.classList.add('editing');
+  input.focus();
+  input.select();
+  function save() {
+    const val = input.value.trim() || cur;
+    el.textContent = val;
+    el.classList.remove('editing');
+    localStorage.setItem('stat-' + key, val);
+  }
+  input.addEventListener('blur', save);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') input.blur(); if (e.key === 'Escape') { input.value = cur; input.blur(); } });
+}
+
+// Tab nav smooth scroll + active highlight
+document.querySelectorAll('.tab-nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.tab-nav a').forEach(a => a.classList.remove('active'));
+    this.classList.add('active');
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    this.style.transform = 'scale(0.92)';
+    setTimeout(() => { this.style.transform = ''; }, 150);
+  });
+});
+
+const VALO_RANKS=[
+  {name:'Iron 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/3/largeicon.png'},
+  {name:'Iron 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/4/largeicon.png'},
+  {name:'Iron 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/5/largeicon.png'},
+  {name:'Bronze 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/6/largeicon.png'},
+  {name:'Bronze 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/7/largeicon.png'},
+  {name:'Bronze 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/8/largeicon.png'},
+  {name:'Silver 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/9/largeicon.png'},
+  {name:'Silver 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/10/largeicon.png'},
+  {name:'Silver 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/11/largeicon.png'},
+  {name:'Gold 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/12/largeicon.png'},
+  {name:'Gold 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/13/largeicon.png'},
+  {name:'Gold 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/14/largeicon.png'},
+  {name:'Platinum 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/15/largeicon.png'},
+  {name:'Platinum 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/16/largeicon.png'},
+  {name:'Platinum 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/17/largeicon.png'},
+  {name:'Diamond 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/18/largeicon.png'},
+  {name:'Diamond 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/19/largeicon.png'},
+  {name:'Diamond 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/20/largeicon.png'},
+  {name:'Ascendant 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/21/largeicon.png'},
+  {name:'Ascendant 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/22/largeicon.png'},
+  {name:'Ascendant 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/23/largeicon.png'},
+  {name:'Immortal 1',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/24/largeicon.png'},
+  {name:'Immortal 2',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/25/largeicon.png'},
+  {name:'Immortal 3',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/26/largeicon.png'},
+  {name:'Radiant',img:'https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png'},
+];
+
+const VALO_AGENTS=[
+  {name:'Astra',img:'https://media.valorant-api.com/agents/41fb69c1-4189-7b37-f117-bcaf1e96f1bf/displayicon.png'},
+  {name:'Breach',img:'https://media.valorant-api.com/agents/5f8d3a7f-467b-97f3-062c-13acf203c006/displayicon.png'},
+  {name:'Brimstone',img:'https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/displayicon.png'},
+  {name:'Chamber',img:'https://media.valorant-api.com/agents/22697a3d-45bf-8dd7-4fec-84a9e28c69d7/displayicon.png'},
+  {name:'Clove',img:'https://media.valorant-api.com/agents/1dbf2edd-4729-0984-3115-daa5eed44993/displayicon.png'},
+  {name:'Cypher',img:'https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/displayicon.png'},
+  {name:'Deadlock',img:'https://media.valorant-api.com/agents/cc8b64c8-4b25-4ff9-6e7f-37b4da43d235/displayicon.png'},
+  {name:'Fade',img:'https://media.valorant-api.com/agents/dade69b4-4f5a-8528-247b-219e5a1facd6/displayicon.png'},
+  {name:'Gekko',img:'https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/displayicon.png'},
+  {name:'Harbor',img:'https://media.valorant-api.com/agents/95b78ed7-4637-86d9-7e41-71ba8c293152/displayicon.png'},
+  {name:'Iso',img:'https://media.valorant-api.com/agents/0e38b510-41a8-5780-5e8f-568b2a4f2d6c/displayicon.png'},
+  {name:'Jett',img:'https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/displayicon.png'},
+  {name:'KAY/O',img:'https://media.valorant-api.com/agents/601dbbe7-43ce-be57-2a40-4abd24953621/displayicon.png'},
+  {name:'Killjoy',img:'https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/displayicon.png'},
+  {name:'Neon',img:'https://media.valorant-api.com/agents/bb2a4828-46eb-8cd1-e765-15848195d751/displayicon.png'},
+  {name:'Omen',img:'https://media.valorant-api.com/agents/8e253930-4c05-31dd-1b6c-968525494517/displayicon.png'},
+  {name:'Phoenix',img:'https://media.valorant-api.com/agents/eb93336a-449b-9c1e-0ac7-dfe9992400c2/displayicon.png'},
+  {name:'Raze',img:'https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/displayicon.png'},
+  {name:'Reyna',img:'https://media.valorant-api.com/agents/a3bfb853-43b2-7238-a4f1-ad90e9e46bcc/displayicon.png'},
+  {name:'Sage',img:'https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/displayicon.png'},
+  {name:'Skye',img:'https://media.valorant-api.com/agents/6f2a04ca-43e0-be17-7f36-b3908627744d/displayicon.png'},
+  {name:'Sova',img:'https://media.valorant-api.com/agents/320b2a48-4d9b-a075-30f1-1f93a9b638fa/displayicon.png'},
+  {name:'Viper',img:'https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/displayicon.png'},
+  {name:'Yoru',img:'https://media.valorant-api.com/agents/7f94d92c-4234-0a36-9646-3a87eb8b5c89/displayicon.png'},
+];
+
+function buildPicker(type){const el=document.getElementById('picker-'+type);if(el.innerHTML)return;el.innerHTML=VALO_RANKS.map(r=>`<div class="rank-picker-item" onclick="selectRank('${type}','${r.name}','${r.img}')"><img src="${r.img}" alt="${r.name}"><span>${r.name}</span></div>`).join('');}
+function toggleRankPicker(type){if(!IS_ADMIN)return;buildPicker(type);const el=document.getElementById('picker-'+type);const other=document.getElementById('picker-'+(type==='current'?'peak':'current'));other.style.display='none';el.style.display=el.style.display==='none'?'grid':'none';}
+function selectRank(type,name,img){document.getElementById(type+'-rank-img').src=img;document.getElementById(type+'-rank-name').textContent=name;document.getElementById('picker-'+type).style.display='none';localStorage.setItem('rank-'+type+'-name',name);localStorage.setItem('rank-'+type+'-img',img);}
+
+let _agentTarget=null;
+function openAgentPicker(tier,index){if(!IS_ADMIN)return;_agentTarget={tier,index};const grid=document.getElementById('agent-picker-grid');grid.innerHTML=VALO_AGENTS.map(a=>`<div class="rank-picker-item" onclick="selectAgent('${a.name}','${a.img}')"><img src="${a.img}" alt="${a.name}"><span>${a.name}</span></div>`).join('');document.getElementById('agent-picker-overlay').style.display='flex';}
+function closeAgentPicker(){document.getElementById('agent-picker-overlay').style.display='none';_agentTarget=null;}
+function selectAgent(name,img){if(!_agentTarget)return;const{tier,index}=_agentTarget;const card=document.querySelector(`.tier-row.${tier}-row .tier-agents .agent-card:nth-child(${index+1})`);if(card){card.querySelector('img').src=img;card.querySelector('span').textContent=name;}saveTierList();closeAgentPicker();}
+function saveTierList(){['s','a','b'].forEach(tier=>{const cards=document.querySelectorAll(`.tier-row.${tier}-row .tier-agents .agent-card`);localStorage.setItem('tierlist-'+tier,JSON.stringify(Array.from(cards).map(c=>({name:c.querySelector('span').textContent,img:c.querySelector('img').src}))))});}
+
+document.addEventListener('click',function(e){if(!IS_ADMIN)return;['current','peak'].forEach(type=>{const picker=document.getElementById('picker-'+type);const box=picker&&picker.previousElementSibling;if(picker&&!picker.contains(e.target)&&box&&!box.contains(e.target))picker.style.display='none';});});
+
+window.addEventListener('DOMContentLoaded',function(){
+  // Rank boxes — clickable only in admin
+  if (IS_ADMIN) {
+    document.getElementById('current-rr').outerHTML = '<input class="rr-input" id="current-rr" type="number" min="0" max="100" value="0" placeholder="0">';
+    document.getElementById('peak-rr').outerHTML = '<input class="rr-input" id="peak-rr" type="number" min="0" max="100" value="0" placeholder="0">';
+    document.querySelector('#ranks .rank-col:nth-child(1) .rank-box').setAttribute('onclick','toggleRankPicker(\'current\')');
+    document.querySelector('#ranks .rank-col:nth-child(1) .rank-box').style.cursor='pointer';
+    document.querySelector('#ranks .rank-col:nth-child(2) .rank-box').setAttribute('onclick','toggleRankPicker(\'peak\')');
+    document.querySelector('#ranks .rank-col:nth-child(2) .rank-box').style.cursor='pointer';
+    document.querySelector('#ranks .rank-col:nth-child(1) .rr-wrap').setAttribute('onclick','event.stopPropagation()');
+    document.querySelector('#ranks .rank-col:nth-child(2) .rr-wrap').setAttribute('onclick','event.stopPropagation()');
+    // Picker divs
+    document.getElementById('picker-current').className='rank-picker';
+    document.getElementById('picker-peak').className='rank-picker';
+    // Agent cards clickable
+    document.querySelectorAll('.tier-row.s-row .agent-card').forEach((c,i)=>{c.style.cursor='pointer';c.onclick=()=>openAgentPicker('s',i);});
+    document.querySelectorAll('.tier-row.a-row .agent-card').forEach((c,i)=>{c.style.cursor='pointer';c.onclick=()=>openAgentPicker('a',i);});
+    document.querySelectorAll('.tier-row.b-row .agent-card').forEach((c,i)=>{c.style.cursor='pointer';c.onclick=()=>openAgentPicker('b',i);});
+    // Stat vals clickable
+    document.querySelectorAll('.editable-val').forEach(el=>{el.onclick=()=>editStat(el);});
+  }
+
+  // Load saved rank data (admin only)
+  if (IS_ADMIN) {
+    ['current','peak'].forEach(type=>{
+      const name=localStorage.getItem('rank-'+type+'-name');
+      const img=localStorage.getItem('rank-'+type+'-img');
+      const rr=localStorage.getItem('rank-'+type+'-rr');
+      if(name)document.getElementById(type+'-rank-name').textContent=name;
+      if(img)document.getElementById(type+'-rank-img').src=img;
+      const rrEl=document.getElementById(type+'-rr');
+      if(rr!==null&&rrEl){IS_ADMIN?rrEl.value=rr:rrEl.textContent=rr;}
+      if(IS_ADMIN&&rrEl&&rrEl.tagName==='INPUT')rrEl.addEventListener('input',function(){localStorage.setItem('rank-'+type+'-rr',this.value);});
+    });
+  }
+
+  // Load saved stat values (admin only — viewer sees hardcoded HTML values)
+  if (IS_ADMIN) {
+    document.querySelectorAll('.editable-val').forEach(el => {
+      const saved = localStorage.getItem('stat-' + el.dataset.key);
+      if (saved) el.textContent = saved;
+    });
+  }
+
+  // Load tier list (admin only)
+  if (IS_ADMIN) {
+    ['s','a','b'].forEach(tier=>{
+      const saved=localStorage.getItem('tierlist-'+tier);
+      if(!saved)return;
+      try{const data=JSON.parse(saved);const cards=document.querySelectorAll(`.tier-row.${tier}-row .tier-agents .agent-card`);data.forEach((d,i)=>{if(cards[i]){cards[i].querySelector('img').src=d.img;cards[i].querySelector('span').textContent=d.name;}});}catch(e){}
+    });
+  }
+});
+</script>
+</body>
+</html>
